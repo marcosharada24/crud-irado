@@ -1,0 +1,28 @@
+name: Deploy Node.js no Render
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar dependências
+        run: npm install express cors
+
+      # - name: Testar servidor (opcional)
+      #   run: node crud.js & sleep 5 && curl -I http://localhost:3000/alunos
+
+      - name: Deploy no Render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: srv-d3ppg5qli9vc73bplu0g
+          #service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: rnd_pASu5vPVahvV42jLmwFomz1rwgIk
+          #api-key: ${{ secrets.RENDER_API_KEY }}
